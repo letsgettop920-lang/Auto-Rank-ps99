@@ -1,14 +1,15 @@
--- [[ BRAINROT HUB - CONFIGURABLE SCRIPT ]] --
+-- [[ PS99 AUTO RANK - CONFIGURABLE SCRIPT ]] --
 
 -- Default configuration if none is provided by the user
-getgenv().brainrotConfig = getgenv().brainrotConfig or {
+getgenv().rankConfig = getgenv().rankConfig or {
     enabled = true,
-    autoSteal = true,
-    autoCollect = true,
-    autoBuy = false,
+    openGifts = true,
+    openLootboxes = true,
+    buyEggSlots = true,
+    buyEquipSlots = true,
 }
 
-local config = getgenv().brainrotConfig
+local config = getgenv().rankConfig
 if not config.enabled then return end
 
 local CoreGui = game:GetService("CoreGui")
@@ -16,20 +17,20 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
 -- Clean up old GUI
-if CoreGui:FindFirstChild("BrainrotHub_Configurable") then
-    CoreGui.BrainrotHub_Configurable:Destroy()
+if CoreGui:FindFirstChild("PS99Rank_UI") then
+    CoreGui.PS99Rank_UI:Destroy()
 end
 
 -- Create ScreenGui
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "BrainrotHub_Configurable"
+ScreenGui.Name = "PS99Rank_UI"
 ScreenGui.Parent = CoreGui
 ScreenGui.ResetOnSpawn = false
 
 -- Create Main Frame
 local MainFrame = Instance.new("Frame")
-MainFrame.Size = UDim2.new(0, 320, 0, 280)
-MainFrame.Position = UDim2.new(0.5, -160, 0.5, -140)
+MainFrame.Size = UDim2.new(0, 320, 0, 320)
+MainFrame.Position = UDim2.new(0.5, -160, 0.5, -160)
 MainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
 MainFrame.BorderSizePixel = 0
 MainFrame.Active = true
@@ -45,7 +46,7 @@ Title.BackgroundColor3 = Color3.fromRGB(30, 30, 45)
 Title.TextColor3 = Color3.fromRGB(255, 215, 0)
 Title.TextSize = 16
 Title.Font = Enum.Font.GothamBold
-Title.Text = "Brainrot Hub | Config Mode"
+Title.Text = "PS99 Auto Rank"
 Title.Parent = MainFrame
 
 Instance.new("UICorner", Title).CornerRadius = UDim.new(0, 12)
@@ -80,14 +81,15 @@ local function createConfigToggle(name, configKey, yPos)
 end
 
 -- Create the toggles based on configuration keys
-createConfigToggle("Auto Steal", "autoSteal", 60)
-createConfigToggle("Auto Collect", "autoCollect", 115)
-createConfigToggle("Auto Buy Items", "autoBuy", 170)
+createConfigToggle("Open Gifts", "openGifts", 60)
+createConfigToggle("Open Lootboxes", "openLootboxes", 110)
+createConfigToggle("Buy Egg Slots", "buyEggSlots", 160)
+createConfigToggle("Buy Equip Slots", "buyEquipSlots", 210)
 
 -- Status label
 local Status = Instance.new("TextLabel")
 Status.Size = UDim2.new(1, -20, 0, 30)
-Status.Position = UDim2.new(0, 10, 0, 235)
+Status.Position = UDim2.new(0, 10, 0, 265)
 Status.BackgroundTransparency = 1
 Status.TextColor3 = Color3.fromRGB(160, 160, 180)
 Status.TextSize = 12
